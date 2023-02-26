@@ -120,6 +120,10 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+
+
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
