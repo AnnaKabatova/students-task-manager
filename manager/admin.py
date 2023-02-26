@@ -27,7 +27,7 @@ class StudentAdmin(UserAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    search_fields = ("task_type", "name",)
+    search_fields = ("name",)
     list_filter = ("task_type", "priority", "deadline")
 
 
