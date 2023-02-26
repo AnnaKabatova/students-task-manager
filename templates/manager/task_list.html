@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Task List
+    <a href="{% url 'manager:task-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input class="btn btn-secondary" type="submit" value="🔎">
+  </form>
+  {% if task_list %}
+    <ul>
+      {% for task in task_list %}
+        <li>
+          <a href="{% url "manager:task-detail" pk=task.id %} ">{{ task.name }}</a>
+          {{ task.deadline }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no tasks!</p>
+  {% endif %}
+{% endblock %}
