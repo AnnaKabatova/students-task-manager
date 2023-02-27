@@ -39,35 +39,6 @@
                       <a href="{% url "manager:task-type-list" %}" class="dropdown-item border-radius-md">
                         <span>Task Types</span>
                       </a>
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
-                        Account
-                      </h6>
-                      <a href="/sign-in.html" class="dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
-                    </div>
-                    <div class="d-lg-none">
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                        Landing Pages
-                      </h6>
-                      <a href="{% url "manager:task-list" %}" class="dropdown-item border-radius-md">
-                        <span>Tasks</span>
-                      </a>
-                      <a href="{% url "manager:student-list" %}" class="dropdown-item border-radius-md">
-                        <span>Students</span>
-                      </a>
-                      <a href="{% url "manager:group-list" %}" class="dropdown-item border-radius-md">
-                        <span>Groups</span>
-                      </a>
-                      <a href="{% url "manager:task-type-list" %}" class="dropdown-item border-radius-md">
-                        <span>Task Types</span>
-                      </a>
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
-                        Account
-                      </h6>
-                      <a href="/sign-in.html" class="dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
                     </div>
                   </div>
                 </li>
@@ -78,7 +49,15 @@
                       <i class="fa fa-sign-out me-1"></i>
                       <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign OUT">Logout</p>
                     </a>
-                  </li>          
+                  </li>
+                {% else %}
+                  <li class="nav-item ms-lg-auto">
+                    <a class="nav-link nav-link-icon me-2"
+                      href="{% url 'login' %}">
+                      <i class="fa fa-sign-in me-1"></i>
+                      <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign In">Login</p>
+                    </a>
+                  </li>
                 {% endif %}
 
               </ul>
