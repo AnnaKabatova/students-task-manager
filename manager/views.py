@@ -1,10 +1,6 @@
 from typing import Optional, Any
 
-from django.shortcuts import render
-
-from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -107,7 +103,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self) -> QuerySet:
-        queryset = Task.objects.all()
+        queryset = Task.objects.prefetch_related("assignees")
 
         form = TaskSearchForm(self.request.GET)
 
