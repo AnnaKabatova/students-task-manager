@@ -1,6 +1,6 @@
 {% extends "layouts/base-fullscreen.html" %}
 
-{% block title %} Sign IN {% endblock %} 
+{% block title %} Sign IN {% endblock %}
 
 {% block body_class %} sign-in-basic {% endblock %}
 
@@ -35,9 +35,7 @@
             </div>
             <div class="card-body">
               <form role="form" method="post" action="" class="text-start">
-
                 {% csrf_token %}
-
                 <div class="input-group input-group-outline mb-3">
                   Username:
                   {{ form.username }}
@@ -52,7 +50,9 @@
                 </div>
                 <div class="text-center">
                   <button type="submit" name="login" 
-                          class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                          class="btn bg-gradient-primary w-100 my-4 mb-2">
+                    Sign in
+                  </button>
                 </div>
               </form>
             </div>
@@ -60,12 +60,8 @@
         </div>
       </div>
     </div>
-
-    {% include 'includes/footer-auth.html' %} 
-
+    {% include 'includes/footer-auth.html' %}
   </div>
-
 {% endblock content %}
-
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}{% endblock javascripts %}
