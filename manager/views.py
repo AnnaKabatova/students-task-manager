@@ -28,7 +28,7 @@ def index(request):
 
 class StudentListView(LoginRequiredMixin, generic.ListView):
     model = Student
-    paginate_by = 10
+    paginate_by = 5
 
     def get_context_data(
             self,
@@ -121,14 +121,15 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-    fields = "__all__"
     success_url = reverse_lazy("manager:task-list")
+    form_class = TaskForm
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("manager:task-list")
+    form_class = TaskForm
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -164,7 +165,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class GroupListView(LoginRequiredMixin, generic.ListView):
     model = Group
-    paginate_by = 5
+    paginate_by = 4
     template_name = "manager/group_list.html"
     context_object_name = "group_list"
 
@@ -178,6 +179,7 @@ class GroupCreateView(LoginRequiredMixin, generic.CreateView):
 
 class GroupUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Group
+    fields = "__all__"
     template_name = "manager/group_form.html"
     success_url = reverse_lazy("manager:group-list")
 

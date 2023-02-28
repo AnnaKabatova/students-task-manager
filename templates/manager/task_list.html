@@ -60,10 +60,10 @@
         {% if task_list %}
             {% for task in task_list %}
                 <div class="alert alert-secondary text-white font-weight-normal" role="alert">
+                  <input type="checkbox" class="justify-content-end mx-auto">
                   <a href="{% url "manager:task-detail" pk=task.id %} " class="text-white">
                     {{ task.name }} Deadline: {{ task.deadline }}
                   </a>
-
                 </div>
             {% endfor %}
         {% endif %}
@@ -85,6 +85,9 @@
                 </figure>
               </div>
             </div>
+              <div class="justify-content-center">
+                {% include "includes/pagination.html" %}
+              </div>
           </div>
         </div>
         </div>

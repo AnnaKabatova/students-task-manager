@@ -1,4 +1,5 @@
 {% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
   <link rel="icon" type="image/png" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
 
   <title>
-    Students Task Manager - Create Task
+    Students Task Manager - Task
   </title>
 
   <!--     Fonts and icons     -->
@@ -40,9 +41,10 @@
               <div class="input-group input-group-dynamic justify-content-center">
                   <h1>{{ object|yesno:"Update,Create" }} Task</h1>
               </div>
-              <form action="" method="post" novalidate class="form-group">
+              <form action="" method="post" novalidate class="form-group text-border">
                 {% csrf_token %}
                 {{ form|crispy }}
+                <p class="font-weight-light justify-content-center">Note: Please enter "deadline" in format Day/Month/Year Hours:Minutes</p>
                 <input class="btn btn-primary" type="submit" value="Submit">
               </form>
             </div>
@@ -50,8 +52,9 @@
       </div>
     </div>
   </div>
-  {% include 'includes/footer-components.html' %}
-  {% include 'includes/scripts.html' %}
-
+    {% include 'includes/footer-components.html' %}
+    {% include 'includes/scripts.html' %}
+  </div>
+  </div>
 </body>
 </html>
