@@ -68,7 +68,7 @@
                     {% for task in student.tasks.all %}
                       <hr>
                       <span>
-                        <a href="{% url "manager:task-detail" pk=task.id %}"> {{ task.name }} (To: {{ task.deadline }})</a>
+                        <a href="{% url "manager:task-detail" pk=task.id %}" target="blank"> {{ task.name }} (To: {{ task.deadline }})</a>
                       </span>
                     {% empty %}
                       <p><strong>No tasks yet!</strong></p>

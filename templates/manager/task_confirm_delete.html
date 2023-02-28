@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
 
   <title>
-    Students Task Manager - Task
+    Students Task Manager - Delete Task
   </title>
 
   <!--     Fonts and icons     -->
@@ -39,14 +39,20 @@
           <div class="container border-bottom bg-white">
             <div class="row justify-space-between py-2">
               <div class="input-group input-group-dynamic justify-content-center">
-                  <h1>{{ object|yesno:"Update,Create" }} Task</h1>
+                  <h1>Task Deletion</h1>
               </div>
-              <form action="" method="post" novalidate class="form-group text-border">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <p class="font-weight-light justify-content-center">Note: Please enter "deadline" in format Month/Day/Year Hours:Minutes</p>
-                <input class="btn btn-primary" type="submit" value="Submit">
-              </form>
+              <div class="font-weight-bold">
+                Are you sure you want to delete "{{ task.name }}" task?
+              </div>
+              <div class="font-weight-light">
+                You won't be able to undo this action...
+              </div>
+              <div>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="Yes" class="btn btn-danger">
+                </form>
+              </div>
             </div>
         </div>
       </div>

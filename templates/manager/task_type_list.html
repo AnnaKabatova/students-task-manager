@@ -56,9 +56,9 @@
         {% if task_type_list %}
             {% for task_type in task_type_list %}
                 <div class="alert alert-secondary text-white font-weight-normal" role="alert">
-                  <p>{{task_type.name}}</p>
-                  <a href="{% url 'manager:task-type-update' pk=task_type.id %}" class="btn btn-primary justify-content-end">Update</a>
-                  <a href="{% url 'manager:task-type-delete' pk=task_type.id %}" class="btn btn-secondary justify-content-end">Delete</a>
+                  <p><strong>{{task_type.name}}</strong></p>
+                  <a href="{% url 'manager:task-type-update' pk=task_type.id %}" class="btn btn-secondary justify-content-end" target="blank">Update</a>
+                  <a href="{% url 'manager:task-type-delete' pk=task_type.id %}" class="btn btn-danger justify-content-end" target="blank">Delete</a>
                 </div>
 
             {% endfor %}

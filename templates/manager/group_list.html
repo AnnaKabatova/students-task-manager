@@ -57,8 +57,8 @@
             {% for group in group_list %}
                 <div class="alert alert-secondary text-white font-weight-normal" role="alert">
                   <p><strong>{{group.name}}</strong></p>
-                  <a href="{% url 'manager:group-update' pk=group.id %}" class="btn btn-primary justify-content-end">Update</a>
-                  <a href="{% url 'manager:group-delete' pk=group.id %}" class="btn btn-secondary justify-content-end">Delete</a>
+                  <a href="{% url 'manager:group-update' pk=group.id %}" class="btn btn-secondary justify-content-end" target="blank">Update</a>
+                  <a href="{% url 'manager:group-delete' pk=group.id %}" class="btn btn-danger justify-content-end" target="blank">Delete</a>
                 </div>
 
             {% endfor %}
