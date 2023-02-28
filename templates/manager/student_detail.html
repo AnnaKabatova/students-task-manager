@@ -1,5 +1,3 @@
-{% load crispy_forms_filters %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +8,7 @@
   <link rel="icon" type="image/png" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
 
   <title>
-    Students Task Manager - Group List
+    Students Task Manager - Student Details
   </title>
 
   <!--     Fonts and icons     -->
@@ -38,14 +36,19 @@
           <div class="container border-bottom bg-white">
             <div class="row justify-space-between py-2">
               <div class="input-group input-group-dynamic justify-content-center">
-                <p class="lead text-dark pt-1 mb-0 col-lg-3 me-auto">Group</p>
-                <div class="mx-auto">
-                  <a href="{% url 'manager:group-create' %}" class="btn btn-info">Add</a>
-                </div>
+                <h1 class="justify-content-center">
+                    {{ student.first_name }} {{ student.last_name }}
+                    ({{ student.username }})
+                </h1>
+
+              </div>
+              <div>
+                  <a href="{% url 'manager:student-update' pk=student.id %}" class="btn btn-secondary end">Edit</a>
+                  <a href="{% url 'manager:student-delete' pk=student.id %}" class="btn btn-danger link-to-page">Delete</a>
               </div>
             </div>
           </div>
-                        <div class="tab-content tab-space">
+              <div class="tab-content tab-space">
             <div class="tab-pane active" id="preview-alerts">
               <iframe class="w-100 height-600" srcdoc='<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -53,17 +56,27 @@
         <link id="pagestyle" href="https://demos.creative-tim.com/material-kit/assets/css/material-kit.min.css?v=3.0.0" rel="stylesheet" />
         <div class="container py-5">
   <div class="row">
-        {% if group_list %}
-            {% for group in group_list %}
-                <div class="alert alert-secondary text-white font-weight-normal" role="alert">
-                  <p><strong>{{group.name}}</strong></p>
-                  <a href="{% url 'manager:group-update' pk=group.id %}" class="btn btn-primary justify-content-end">Update</a>
-                  <a href="{% url 'manager:group-delete' pk=group.id %}" class="btn btn-secondary justify-content-end">Delete</a>
-                </div>
+                  <p class="font-weight-normal">
+                    <strong>Group:</strong>
+                    {{ student.group.name }}
+                  </p>
+                  <p><strong>Email:</strong> {{ student.email }}</p>
 
-            {% endfor %}
-        {% endif %}
-        '></iframe>
+                  <div class="ml-3">
+                    <h3 class="text-decoration-underline">Tasks</h3>
+
+                    {% for task in student.tasks.all %}
+                      <hr>
+                      <span>
+                        <a href="{% url "manager:task-detail" pk=task.id %}"> {{ task.name }} (To: {{ task.deadline }})</a>
+                      </span>
+                    {% empty %}
+                      <p><strong>No tasks yet!</strong></p>
+                    {% endfor %}
+                  </div>
+              </div>
+          </div>
+          '></iframe>
             </div>
             <div class="tab-pane" id="code-alerts">
               <div class="position-relative p-4 pb-2">

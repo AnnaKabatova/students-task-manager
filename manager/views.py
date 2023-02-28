@@ -77,7 +77,7 @@ class StudentGroupUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class StudentDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Student
-    success_url = reverse_lazy("")
+    success_url = reverse_lazy("manager:student-list")
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
@@ -128,8 +128,17 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = "__all__"
-    success_url = reverse_lazy("manager:task-list")
+    success_url = reverse_lazy("manager:task-detail")
     form_class = TaskForm
+
+
+def update_completion(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if not task.is_completed:
+        task.is_completed = True
+        task.save()
+
+    return render(request, "manager/task_detail.html", task)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
