@@ -139,7 +139,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
-    paginate_by = 5
+    paginate_by = 4
     template_name = "manager/task_type_list.html"
     context_object_name = "task_type_list"
 
@@ -153,6 +153,7 @@ class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
+    fields = "__all__"
     template_name = "manager/task_type_form.html"
     success_url = reverse_lazy("manager:task-type-list")
 
