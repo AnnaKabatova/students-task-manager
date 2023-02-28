@@ -1,5 +1,4 @@
 {% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,28 +31,28 @@
   {% include 'includes/navigation-light.html' %}
   <div class="page-header min-vh-75 relative">
       <span class="mask bg-gradient-primary opacity-4"></span>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-12 mx-auto">
-        <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
-          <div class="container border-bottom bg-white">
-            <div class="row justify-space-between py-2">
-              <div class="input-group input-group-dynamic justify-content-center">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
+            <div class="container border-bottom bg-white">
+              <div class="row justify-space-between py-2">
+                <div class="input-group input-group-dynamic justify-content-center">
                   <h1>{{ object|yesno:"Update,Create" }} Group</h1>
+                </div>
+                <form action="" method="post" novalidate class="form-group text-border">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
               </div>
-              <form action="" method="post" novalidate class="form-group text-border">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <input class="btn btn-primary" type="submit" value="Submit">
-              </form>
             </div>
+          </div>
         </div>
       </div>
+      {% include 'includes/footer-components.html' %}
+      {% include 'includes/scripts.html' %}
     </div>
-  </div>
-    {% include 'includes/footer-components.html' %}
-    {% include 'includes/scripts.html' %}
-  </div>
   </div>
 </body>
 </html>

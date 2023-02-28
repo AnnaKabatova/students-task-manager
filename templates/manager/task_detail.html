@@ -65,13 +65,10 @@
                     <strong>Completed:</strong>
                     {{ task.is_completed }}
                     {% if not task.is_completed %}
-                      <a href="{% url "manager:update-completion" pk=task.id %}" class="btn btn-info" target="blank">
-                        Mark as completed
-                      </a>
-{#                      <form action="{% url "manager:update-completion" pk=task.id %}" method="post">#}
-{#                        {% csrf_token %}#}
-{#                        <input type="submit" value="Mark as completed" class="btn btn-info">#}
-{#                      </form>#}
+                      <form action="{% url "manager:update-completion" pk=task.id %}" method="post" target="blank">
+                        {% csrf_token %}
+                        <input type="submit" value="Mark as completed" class="btn btn-info">
+                      </form>
                     {% endif %}
                   </p>
                   <p><strong>Deadline:</strong> {{ task.deadline }}</p>

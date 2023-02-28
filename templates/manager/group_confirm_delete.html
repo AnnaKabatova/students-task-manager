@@ -1,5 +1,4 @@
 {% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,36 +30,37 @@
 
   {% include 'includes/navigation-light.html' %}
   <div class="page-header min-vh-75 relative">
-      <span class="mask bg-gradient-primary opacity-4"></span>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-12 mx-auto">
-        <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
-          <div class="container border-bottom bg-white">
-            <div class="row justify-space-between py-2">
-              <div class="input-group input-group-dynamic justify-content-center">
+    <span class="mask bg-gradient-primary opacity-4"></span>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
+            <div class="container border-bottom bg-white">
+              <div class="row justify-space-between py-2">
+                <div class="input-group input-group-dynamic justify-content-center">
                   <h1>Group Deletion</h1>
-              </div>
-              <div class="font-weight-bold">
-                Are you sure you want to delete "{{ group.name }}" group?
-              </div>
-              <div class="font-weight-light">
-                You won't be able to undo this action...
-              </div>
-              <div>
-                <form action="" method="post">
-                  {% csrf_token %}
-                  <input type="submit" value="Yes" class="btn btn-danger">
-                </form>
+                </div>
+                <div class="font-weight-bold">
+                  Are you sure you want to delete "{{ group.name }}" group?
+                </div>
+                <div class="font-weight-light">
+                  You won't be able to undo this action...
+                </div>
+                <div>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Yes" class="btn btn-danger">
+                  </form>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
+      {% include 'includes/footer-components.html' %}
+      {% include 'includes/scripts.html' %}
     </div>
-  </div>
-    {% include 'includes/footer-components.html' %}
-    {% include 'includes/scripts.html' %}
-  </div>
   </div>
 </body>
 </html>

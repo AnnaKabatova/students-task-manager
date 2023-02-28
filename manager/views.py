@@ -131,13 +131,15 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = TaskForm
 
 
-def update_completion(request, task_id):
-    task = Task.objects.get(id=task_id)
+def update_completion(request, pk):
+    task = Task.objects.get(id=pk)
     if not task.is_completed:
         task.is_completed = True
         task.save()
-
-    return render(request, "manager/task_detail.html", task)
+    context = {
+        "task": task
+    }
+    return render(request, "manager/task_detail.html", context=context)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
