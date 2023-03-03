@@ -3,7 +3,7 @@ from typing import Optional, Any
 from django.db.models import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Task, TaskType, Student, Group
@@ -131,15 +131,30 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = TaskForm
 
 
-def update_completion(request, pk):
-    task = Task.objects.get(id=pk)
-    if not task.is_completed:
-        task.is_completed = True
+class TaskUpdateCompletionView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        task = Task.objects.get(id=pk)
+        if not task.is_completed:
+            task.is_completed = True
+        else:
+            task.is_completed = False
         task.save()
-    context = {
-        "task": task
-    }
-    return render(request, "manager/task_detail.html", context=context)
+        context = {
+            "task": task
+        }
+        return render(request, "manager/task_detail.html", context=context)
+    
+    def post(self, request, pk):
+        task = Task.objects.get(id=pk)
+        if not task.is_completed:
+            task.is_completed = request.POST.get("is_completed", True)
+        else:
+            task.is_completed = request.POST.get("is_completed", False)
+        task.save()
+        context = {
+            "task": task
+        }
+        return render(request, "manager/task_detail.html", context=context)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):

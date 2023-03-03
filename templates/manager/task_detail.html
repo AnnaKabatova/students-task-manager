@@ -68,6 +68,11 @@
                             {% csrf_token %}
                             <input type="submit" value="Mark as completed" class="btn btn-info">
                           </form>
+                        {% else %}
+                          <form action="{% url "manager:update-completion" pk=task.id %}" method="post" target="blank">
+                            {% csrf_token %}
+                            <input type="submit" value="Undo completion" class="btn btn-secondary">
+                          </form>
                         {% endif %}
                       </p>
                       <p><strong>Deadline:</strong> {{ task.deadline }}</p>

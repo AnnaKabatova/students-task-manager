@@ -14,7 +14,7 @@ from manager.views import (
     TaskDetailView,
     TaskCreateView,
     TaskUpdateView,
-    update_completion,
+    TaskUpdateCompletionView,
     TaskDeleteView,
     StudentListView,
     StudentDetailView,
@@ -69,7 +69,7 @@ urlpatterns = [
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
-    path("tasks/<int:pk>/complete/", update_completion, name = 'update-completion'),
+    path("tasks/<int:pk>/complete/", TaskUpdateCompletionView.as_view(), name = 'update-completion'),
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     path("students/", StudentListView.as_view(), name="student-list"),
     path(
