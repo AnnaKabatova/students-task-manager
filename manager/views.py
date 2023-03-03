@@ -134,10 +134,7 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TaskUpdateCompletionView(LoginRequiredMixin, View):
     def get(self, request, pk):
         task = Task.objects.get(id=pk)
-        if not task.is_completed:
-            task.is_completed = True
-        else:
-            task.is_completed = False
+        task.is_completed = not task.is_completed
         task.save()
         context = {
             "task": task
@@ -146,10 +143,7 @@ class TaskUpdateCompletionView(LoginRequiredMixin, View):
     
     def post(self, request, pk):
         task = Task.objects.get(id=pk)
-        if not task.is_completed:
-            task.is_completed = request.POST.get("is_completed", True)
-        else:
-            task.is_completed = request.POST.get("is_completed", False)
+        task.is_completed = request.POST.get("is_completed", not task.is_completed)
         task.save()
         context = {
             "task": task
