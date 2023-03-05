@@ -1,6 +1,8 @@
+import pytz
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from datetime import datetime
 
 from manager.models import Task, TaskType, Group, Student
 
@@ -25,6 +27,15 @@ class PrivateTaskTests(TestCase):
         )
         self.client.force_login(self.user)
 
+        europe_kiev = pytz.timezone('Europe/Kiev')
+        self.task = Task.objects.create(
+            name="Test Task",
+            description="Test description",
+            deadline=datetime(2024, 3, 5, 14, 30, tzinfo=europe_kiev),
+            is_completed=False
+        )
+        self.url = reverse("manager:update-completion", kwargs={'pk': self.task.pk})
+
     def test_retrieve_tasks(self):
         Task(name="write an essay")
         Task(name="pass an exam")
@@ -40,6 +51,26 @@ class PrivateTaskTests(TestCase):
         )
 
         self.assertTemplateUsed(response, "manager/task_list.html")
+
+    def test_for_update_task_completion(self):
+        # Initial check if task is not completed
+        self.assertFalse(self.task.is_completed)
+    
+        # Testing if task is marked as completed if it wasn't
+        response = self.client.post(self.url)
+    
+        self.assertEqual(response.status_code, 200)
+    
+        self.task.refresh_from_db()
+        self.assertTrue(self.task.is_completed)
+    
+        # Check for "Undo" button to make task not completed
+        response = self.client.post(self.url)
+    
+        self.assertEqual(response.status_code, 200)
+    
+        self.task.refresh_from_db()
+        self.assertFalse(self.task.is_completed)
 
 
 class PublicGroupTests(TestCase):
@@ -89,7 +120,7 @@ class PrivateTaskTypeTests(TestCase):
             "password123"
         )
         self.client.force_login(self.user)
-    
+
     def test_retrieve_task_types(self):
         TaskType.objects.create(
             name="Test name"
