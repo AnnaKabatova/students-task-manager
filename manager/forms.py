@@ -11,7 +11,7 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=True
     )
-
+    
     class Meta:
         model = Task
         fields = ["name", "description", "deadline", "priority", "task_type", "assignees"]

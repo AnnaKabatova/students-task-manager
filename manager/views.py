@@ -1,35 +1,35 @@
 from typing import Optional, Any
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic, View
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Task, TaskType, Student, Group
 from .forms import *
+from .models import TaskType, Group
 
 
 def index(request):
     """View function for the home page"""
-
+    
     num_students = Student.objects.count()
     num_tasks = Task.objects.count()
     num_groups = Group.objects.count()
-
+    
     context = {
         "num_students": num_students,
         "num_tasks": num_tasks,
         "num_groups": num_groups,
     }
-
+    
     return render(request, "manager/index.html", context=context)
 
 
 class StudentListView(LoginRequiredMixin, generic.ListView):
     model = Student
     paginate_by = 5
-
+    
     def get_context_data(
             self,
             *,
@@ -37,25 +37,25 @@ class StudentListView(LoginRequiredMixin, generic.ListView):
             **kwargs
     ):
         context = super(StudentListView, self).get_context_data(**kwargs)
-
+        
         username = self.request.GET.get("username", "")
-
+        
         context["search_form"] = StudentSearchForm(initial={
             "username": username
         })
-
+        
         return context
-
+    
     def get_queryset(self) -> QuerySet:
         queryset = Student.objects.all()
-
+        
         form = StudentSearchForm(self.request.GET)
-
+        
         if form.is_valid():
             return queryset.filter(
                 username__icontains=form.cleaned_data["username"]
             )
-
+        
         return queryset
 
 
@@ -85,7 +85,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "task_list"
     template_name = "manager/task_list.html"
     paginate_by = 10
-
+    
     def get_context_data(
             self,
             *,
@@ -93,25 +93,25 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
             **kwargs
     ):
         context = super(TaskListView, self).get_context_data(**kwargs)
-
+        
         name = self.request.GET.get("name", "")
-
+        
         context["search_form"] = TaskSearchForm(initial={
             "name": name
         })
-
+        
         return context
-
+    
     def get_queryset(self) -> QuerySet:
         queryset = Task.objects.prefetch_related("assignees")
-
+        
         form = TaskSearchForm(self.request.GET)
-
+        
         if form.is_valid():
             return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
-
+        
         return queryset
 
 

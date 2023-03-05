@@ -11,7 +11,7 @@ class TestSearch(TestCase):
             username="test_user"
         )
         self.client.force_login(self.user)
-
+    
     def test_search_students_by_username(self):
         response = self.client.get(
             reverse("manager:student-list") + "?name=test_user"
@@ -20,7 +20,7 @@ class TestSearch(TestCase):
             list(response.context["student_list"]),
             list(Student.objects.filter(username__icontains="test_user")),
         )
-
+    
     def test_search_task_by_name(self):
         response = self.client.get(
             reverse("manager:task-list") + "?name=write"

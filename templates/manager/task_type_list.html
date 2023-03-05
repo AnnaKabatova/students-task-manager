@@ -4,50 +4,53 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
-  <link rel="icon" type="image/png" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
+  <link rel="apple-touch-icon" sizes="76x76"
+        href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
+  <link rel="icon" type="image/png"
+        href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
 
   <title>
     Students Task Manager - Task Type List
   </title>
 
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
   <!-- Nucleo Icons -->
-  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet"/>
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet"/>
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/material-kit.css?v=3.0.0" rel="stylesheet"/>
 
 </head>
 <body class="alerts-sections">
 
-  {% include 'includes/navigation-light.html' %}
-  <div class="page-header min-vh-75 relative">
-    <span class="mask bg-gradient-primary opacity-4"></span>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-lg-12 mx-auto">
-          <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
-            <div class="container border-bottom bg-white">
-              <div class="row justify-space-between py-2">
-                <div class="input-group input-group-dynamic justify-content-center">
-                  <p class="lead text-dark pt-1 mb-0 col-lg-3 me-auto">Task Types</p>
-                  <div class="mx-auto">
-                    <a href="{% url 'manager:task-type-create' %}" class="btn btn-info">Add</a>
-                  </div>
+{% include 'includes/navigation-light.html' %}
+<div class="page-header min-vh-75 relative">
+  <span class="mask bg-gradient-primary opacity-4"></span>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
+          <div class="container border-bottom bg-white">
+            <div class="row justify-space-between py-2">
+              <div class="input-group input-group-dynamic justify-content-center">
+                <p class="lead text-dark pt-1 mb-0 col-lg-3 me-auto">Task Types</p>
+                <div class="mx-auto">
+                  <a href="{% url 'manager:task-type-create' %}" class="btn btn-info">Add</a>
                 </div>
               </div>
             </div>
-            <div class="tab-content tab-space">
-              <div class="tab-pane active" id="preview-alerts">
-                <iframe class="w-100 height-600" srcdoc='<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          </div>
+          <div class="tab-content tab-space">
+            <div class="tab-pane active" id="preview-alerts">
+              <iframe class="w-100 height-600" srcdoc='<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
                   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
                   <link id="pagestyle" href="https://demos.creative-tim.com/material-kit/assets/css/material-kit.min.css?v=3.0.0" rel="stylesheet" />
@@ -56,7 +59,7 @@
                       {% if task_type_list %}
                           {% for task_type in task_type_list %}
                               <div class="alert alert-secondary text-white font-weight-normal" role="alert">
-                                <p><strong>{{task_type.name}}</strong></p>
+                                <p><strong>{{ task_type.name }}</strong></p>
                                 <a href="{% url 'manager:task-type-update' pk=task_type.id %}" class="btn btn-secondary justify-content-end" target="blank">Update</a>
                                 <a href="{% url 'manager:task-type-delete' pk=task_type.id %}" class="btn btn-danger justify-content-end" target="blank">Delete</a>
                               </div>
@@ -64,14 +67,15 @@
                           {% endfor %}
                       {% endif %}
               '></iframe>
-              </div>
-              <div class="tab-pane" id="code-alerts">
-                <div class="position-relative p-4 pb-2">
-                  <a class="btn btn-sm bg-gradient-dark position-absolute end-4 mt-3" onclick="copyCode(this);" href="javascript:;">
-                    <i class="fas fa-copy text-sm me-1"></i>
-                    Copy
-                  </a>
-                  <figure class="highlight">
+            </div>
+            <div class="tab-pane" id="code-alerts">
+              <div class="position-relative p-4 pb-2">
+                <a class="btn btn-sm bg-gradient-dark position-absolute end-4 mt-3" onclick="copyCode(this);"
+                   href="javascript:;">
+                  <i class="fas fa-copy text-sm me-1"></i>
+                  Copy
+                </a>
+                <figure class="highlight">
                     <pre>
                       <code class="language-html" data-lang="html">
                         <span class="nt">&lt;div</span>
@@ -84,19 +88,19 @@
                         <span class="nt">&gt;</span>
                       </code>
                     </pre>
-                  </figure>
-                </div>
+                </figure>
               </div>
-              <div class="justify-content-center">
-                {% include "includes/pagination.html" %}
-              </div>
+            </div>
+            <div class="justify-content-center">
+              {% include "includes/pagination.html" %}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  {% include 'includes/footer-components.html' %}
-  {% include 'includes/scripts.html' %}
+</div>
+{% include 'includes/footer-components.html' %}
+{% include 'includes/scripts.html' %}
 </body>
 </html>

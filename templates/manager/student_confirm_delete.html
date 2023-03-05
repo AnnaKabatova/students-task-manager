@@ -4,62 +4,66 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
-  <link rel="icon" type="image/png" href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
+  <link rel="apple-touch-icon" sizes="76x76"
+        href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
+  <link rel="icon" type="image/png"
+        href="https://media.istockphoto.com/id/1222068323/vector/courthouse-icon-flat-vector-template-design-trendy.jpg?s=612x612&w=0&k=20&c=SUJf0h0tdKQy9MDpzniO6eka7qTOz6tU2sxHo36Hl1I=">
 
   <title>
     Students Task Manager - Delete Student
   </title>
 
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
   <!-- Nucleo Icons -->
-  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet"/>
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet"/>
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/material-kit.css?v=3.0.0" rel="stylesheet"/>
 
 </head>
 <body class="alerts-sections">
 
-  {% include 'includes/navigation-light.html' %}
-  <div class="page-header min-vh-75 relative">
-    <span class="mask bg-gradient-primary opacity-4"></span>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-lg-12 mx-auto">
-          <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
-            <div class="container border-bottom bg-white">
-              <div class="row justify-space-between py-2">
-                <div class="input-group input-group-dynamic justify-content-center">
-                    <h1>Student Deletion</h1>
-                </div>
-                <div class="font-weight-bold">
-                  Are you sure you want to delete student {{ student.username }} ({{ student.first_name }} {{ student.last_name }})?
-                </div>
-                <div class="font-weight-light">
-                  You won't be able to undo this action...
-                </div>
-                <div>
-                  <form action="" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Yes" class="btn btn-danger">
-                  </form>
-                </div>
+{% include 'includes/navigation-light.html' %}
+<div class="page-header min-vh-75 relative">
+  <span class="mask bg-gradient-primary opacity-4"></span>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="position-relative border-radius-xl overflow-hidden shadow-lg mb-7">
+          <div class="container border-bottom bg-white">
+            <div class="row justify-space-between py-2">
+              <div class="input-group input-group-dynamic justify-content-center">
+                <h1>Student Deletion</h1>
+              </div>
+              <div class="font-weight-bold">
+                Are you sure you want to delete student {{ student.username }}
+                ({{ student.first_name }} {{ student.last_name }})?
+              </div>
+              <div class="font-weight-light">
+                You won't be able to undo this action...
+              </div>
+              <div>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="Yes" class="btn btn-danger">
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {% include 'includes/footer-components.html' %}
-      {% include 'includes/scripts.html' %}
     </div>
+    {% include 'includes/footer-components.html' %}
+    {% include 'includes/scripts.html' %}
   </div>
+</div>
 </body>
 </html>

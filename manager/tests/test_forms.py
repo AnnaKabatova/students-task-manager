@@ -1,6 +1,3 @@
-from datetime import datetime
-
-import pytz
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -58,7 +55,7 @@ class PrivateTaskFormTest(TestCase):
         )
         self.client.force_login(self.user)
         self.task_type = TaskType.objects.create(name="test task type")
-
+    
     def test_invalid_form(self):
         form_data = {
             "name": "",
