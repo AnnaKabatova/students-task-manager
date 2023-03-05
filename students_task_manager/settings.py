@@ -104,8 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "manager.Student"
 
-LOGIN_REDIRECT_URL = "/manager/"
-LOGOUT_REDIRECT_URL = "/manager/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
