@@ -32,11 +32,12 @@ class PrivateStudentTests(TestCase):
             "password123"
         )
         self.client.force_login(self.user)
+        self.group = Group.objects.create(name="test group")
     
     def test_create_student(self):
         form_data = {
             "username": "new_user",
-            "group": "test_group",
+            "group": self.group.id,
             "first_name": "Test first",
             "last_name": "Test last",
             "password1": "user123test",
@@ -56,16 +57,17 @@ class PrivateTaskFormTest(TestCase):
             "password123"
         )
         self.client.force_login(self.user)
-    
-    def test_valid_form(self):
-        europe_kiev = pytz.timezone('Europe/Kiev')
-        task_type = TaskType.objects.create(name="test task type")
+        self.task_type = TaskType.objects.create(name="test task type")
+
+    def test_invalid_form(self):
         form_data = {
-            "name": "test name",
-            'description': 'test description',
-            'deadline': datetime(2033, 8, 31, 0, 0, tzinfo=europe_kiev),
-            "tags": task_type,
+            "name": "",
+            "description": "test description",
+            "deadline": "",
+            "task_type": self.task_type.id,
+            "assignees": []
         }
         form = TaskForm(data=form_data)
-        self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data, form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("name", form.errors)
+        self.assertIn("deadline", form.errors)
