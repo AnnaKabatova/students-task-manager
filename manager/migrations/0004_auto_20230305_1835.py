@@ -14,6 +14,9 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ("manager", "0003_alter_task_task_type"),
+        ("sessions", "0001_initial"),
     ]
-    
-    operations = [RunPython(func, reverse_func)]
+
+    operations = [
+        RunPython(func, reverse_func)
+    ]
