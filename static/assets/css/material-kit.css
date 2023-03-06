@@ -1781,6 +1781,12 @@ progress {
   font-weight: 400;
   color: #7b809a; }
 
+.form-group .form-control {
+  border: 1px solid #7b809a;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
 .col-form-label {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
