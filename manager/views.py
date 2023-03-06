@@ -5,12 +5,13 @@ from django.db.models import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic, View
+from django.http import HttpResponse
 
 from .forms import *
 from .models import TaskType, Group
 
 
-def index(request):
+def index(request) -> HttpResponse:
     """View function for the home page"""
     
     num_students = Student.objects.count()
@@ -35,7 +36,7 @@ class StudentListView(LoginRequiredMixin, generic.ListView):
             *,
             object_list: Optional[list[Any]] = None,
             **kwargs
-    ):
+    ) -> dict:
         context = super(StudentListView, self).get_context_data(**kwargs)
         
         username = self.request.GET.get("username", "")
@@ -91,7 +92,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
             *,
             object_list: Optional[list[Any]] = None,
             **kwargs
-    ):
+    ) -> dict:
         context = super(TaskListView, self).get_context_data(**kwargs)
         
         name = self.request.GET.get("name", "")
@@ -132,7 +133,7 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 class TaskUpdateCompletionView(LoginRequiredMixin, View):
-    def get(self, request, pk):
+    def get(self, request, pk) -> HttpResponse:
         task = Task.objects.get(id=pk)
         task.is_completed = not task.is_completed
         task.save()
@@ -141,7 +142,7 @@ class TaskUpdateCompletionView(LoginRequiredMixin, View):
         }
         return render(request, "manager/task_detail.html", context=context)
     
-    def post(self, request, pk):
+    def post(self, request, pk) -> HttpResponse:
         task = Task.objects.get(id=pk)
         task.is_completed = request.POST.get("is_completed", not task.is_completed)
         task.save()

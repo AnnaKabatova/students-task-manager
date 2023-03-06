@@ -6,14 +6,14 @@ from django.urls import reverse
 class TaskType(models.Model):
     name = models.CharField(max_length=63, unique=True)
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -24,10 +24,10 @@ class Student(AbstractUser):
         verbose_name = "student"
         verbose_name_plural = "students"
     
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
     
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("manager:student-detail", kwargs={"pk": self.pk})
 
 
@@ -47,5 +47,5 @@ class Task(models.Model):
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE, null=True)
     assignees = models.ManyToManyField(Student, related_name="tasks")
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
