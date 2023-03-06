@@ -42,7 +42,9 @@ python manage.py migrate
 ```git
 python manage.py runserver
 ```
-7. All is set, now you can use the site!
+7. All is set, now you can use the site! Use this credentials to login:
+  - Login: `test_student`
+  - Password: `2wsxvfr4`
 
 ## A couple words on .env
 In main folder you'll find a file .env_sample. In this file an example of SECRET_KEY is stored, required for the project.
