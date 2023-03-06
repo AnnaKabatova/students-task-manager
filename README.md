@@ -43,8 +43,8 @@ python manage.py migrate
 python manage.py runserver
 ```
 7. All is set, now you can use the site! Use this credentials to login:
-username: test_student
-password: 2wsxvfr4
+  - Login: `test_student`
+  - Password: `2wsxvfr4`
 
 ## A couple words on .env
 In main folder you'll find a file .env_sample. In this file an example of SECRET_KEY is stored, required for the project.
