@@ -8,17 +8,17 @@ from manager.models import Student, Task
 class TestSearch(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
-            username="test_user"
+            username="user123"
         )
         self.client.force_login(self.user)
     
     def test_search_students_by_username(self):
         response = self.client.get(
-            reverse("manager:student-list") + "?name=test_user"
+            reverse("manager:student-list") + "?username=user123"
         )
         self.assertEqual(
             list(response.context["student_list"]),
-            list(Student.objects.filter(username__icontains="test_user")),
+            list(Student.objects.filter(username__icontains="user123")),
         )
     
     def test_search_task_by_name(self):
