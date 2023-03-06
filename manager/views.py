@@ -104,7 +104,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self) -> QuerySet:
-        queryset = Task.objects.prefetch_related("assignees")
+        queryset = Task.objects.prefetch_related("assignees").select_related("task_type")
         
         form = TaskSearchForm(self.request.GET)
         
@@ -118,6 +118,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
+    queryset = Task.objects.get()
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
