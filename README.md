@@ -12,11 +12,11 @@ This project is a simple analog for such task-managers as Trello or ClickUp
 
 1. Copy this repository, by using your terminal:
 ```git
-git clone <repository-url>
+git clone https://github.com/AnnaKabatova/students-task-manager.git
 ```
 2. Change directory to main project folder. Use this commang:
 ```git
-cd path-where-you've-installed-project/todo-list/
+cd students-task-manager
 ```
 3. Install venv, and activate it by using following commands:
 ```git
