@@ -12,7 +12,7 @@ This project is a simple analog for such task-managers as Trello or ClickUp
 
 [Library project deployed to Render](https://students-task-manager-wgn1.onrender.com)
 
-g## Installation
+## Installation
 
 1. Copy this repository, by using your terminal:
 ```git
