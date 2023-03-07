@@ -118,7 +118,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
-    queryset = Task.objects.get()
+    queryset = Task.objects.all()
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
